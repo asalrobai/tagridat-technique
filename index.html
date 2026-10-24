@@ -18,7 +18,6 @@
     <span class="orb orb-3"></span>
   </div>
 
-  <!-- Header -->
   <header class="header">
     <div class="container header-inner">
       <a href="#home" class="brand" data-route="home">
@@ -56,7 +55,6 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero" id="hero">
     <div class="container hero-inner">
       <div class="hero-text">
@@ -87,10 +85,8 @@
     </div>
   </section>
 
-  <!-- Main content -->
   <main class="main">
     <div class="container layout">
-      <!-- Sidebar -->
       <aside class="sidebar">
         <div class="card sidebar-card">
           <h3>فلترة</h3>
@@ -113,9 +109,7 @@
         </div>
       </aside>
 
-      <!-- Feed -->
       <section class="feed">
-        <!-- Composer -->
         <div class="card composer hidden" id="composer">
           <div class="composer-head">
             <span class="avatar avatar-lg" id="composerAvatar"></span>
@@ -157,7 +151,6 @@
     </div>
   </main>
 
-  <!-- Views (admin / profile / myPosts) -->
   <section class="view hidden" id="adminView">
     <div class="container">
       <div class="view-header">
@@ -189,7 +182,6 @@
     </div>
   </section>
 
-  <!-- Auth Modal -->
   <div class="modal hidden" id="authModal">
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-card">
@@ -217,12 +209,11 @@
         </div>
         <div class="auth-error hidden" id="authError"></div>
         <button type="submit" class="btn btn-primary btn-block" id="authSubmit">دخول</button>
-        <p class="auth-hint" id="authHint">Demo: admin / admin123</p>
+        <p class="auth-hint" id="authHint">استخدم بريدك الإلكتروني أو اسم المستخدم</p>
       </form>
     </div>
   </div>
 
-  <!-- Edit Modal -->
   <div class="modal hidden" id="editModal">
     <div class="modal-backdrop" id="editBackdrop"></div>
     <div class="modal-card">
@@ -238,15 +229,16 @@
     </div>
   </div>
 
-  <!-- Toast -->
   <div class="toast" id="toast"></div>
 
   <footer class="footer">
     <div class="container">
-      <p>© 2026 تغريدات تقنية — منصة عربية للتدوين التقني. بياناتك محفوظة محلياً في متصفحك.</p>
+      <p>© 2026 تغريدات تقنية — منصة عربية للتدوين التقني. البيانات محفوظة في Supabase.</p>
     </div>
   </footer>
 
+  <!-- Supabase client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
 </body>
 </html>

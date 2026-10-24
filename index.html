@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تغريدات تقنية — منصة التدوين التقني</title>
+  <meta name="description" content="منصة تغريدات تقنية: شارك أفكارك التقنية، علّق، ثبّت، واجعل تدويناتك مميزة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#home" class="brand" data-route="home">
+        <span class="brand-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="brand-text">تغريدات<span class="brand-accent">تقنية</span></span>
+      </a>
+
+      <nav class="nav">
+        <a href="#home" class="nav-link" data-route="home"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a>
+        <a href="#explore" class="nav-link" data-route="explore"><i class="fa-solid fa-compass"></i><span>استكشاف</span></a>
+        <a href="#featured" class="nav-link" data-route="featured"><i class="fa-solid fa-star"></i><span>مميزة</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="تبديل المظهر"><i class="fa-solid fa-moon"></i></button>
+        <div id="guestActions" class="guest-actions">
+          <button class="btn btn-ghost" id="openLogin">تسجيل الدخول</button>
+          <button class="btn btn-primary" id="openRegister">إنشاء حساب</button>
+        </div>
+        <div id="userMenu" class="user-menu hidden">
+          <button class="user-chip" id="userChip">
+            <span class="avatar" id="userAvatar"></span>
+            <span id="userName"></span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown hidden" id="userDropdown">
+            <a href="#profile" data-route="profile"><i class="fa-solid fa-user"></i> ملفي</a>
+            <a href="#myPosts" data-route="myPosts"><i class="fa-solid fa-pen-nib"></i> تدويناتي</a>
+            <a href="#admin" data-route="admin" id="adminLink" class="hidden"><i class="fa-solid fa-shield-halved"></i> لوحة الإدارة</a>
+            <hr />
+            <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="badge"><i class="fa-solid fa-sparkles"></i> منصة عربية للتدوين التقني</span>
+        <h1>شارك <span class="gradient-text">أفكارك التقنية</span> مع العالم</h1>
+        <p>اكتب تغريدات تقنية قصيرة، ثبّت المهم، واجعل الأفضل مميزاً. مجتمع للمطورين، المصممين، وعشاق التقنية.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg" id="heroStart"><i class="fa-solid fa-rocket"></i> ابدأ الآن</button>
+          <button class="btn btn-ghost btn-lg" id="heroExplore"><i class="fa-solid fa-compass"></i> استكشاف</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong id="statPosts">0</strong><span>تدوينة</span></div>
+          <div class="stat"><strong id="statUsers">0</strong><span>مستخدم</span></div>
+          <div class="stat"><strong id="statFeatured">0</strong><span>مميزة</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-card">
+          <div class="code-bar"><span></span><span></span><span></span></div>
+          <pre><code><span class="kw">const</span> <span class="var">tweet</span> = {
+  <span class="key">author</span>: <span class="str">"أنت"</span>,
+  <span class="key">topic</span>: <span class="str">"تقنية"</span>,
+  <span class="key">pinned</span>: <span class="bool">true</span>,
+  <span class="key">featured</span>: <span class="bool">true</span>
+};</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main class="main">
+    <div class="container layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="card sidebar-card">
+          <h3>فلترة</h3>
+          <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="pinned">المثبتة</button>
+            <button class="filter-btn" data-filter="featured">المميزة</button>
+            <button class="filter-btn" data-filter="mine">تدويناتي</button>
+          </div>
+        </div>
+        <div class="card sidebar-card">
+          <h3>مواضيع شائعة</h3>
+          <div class="tags" id="tagCloud"></div>
+        </div>
+        <div class="card sidebar-card admin-only hidden" id="adminQuick">
+          <h3>إدارة سريعة</h3>
+          <a class="quick-link" data-route="admin"><i class="fa-solid fa-users"></i> المستخدمون</a>
+          <a class="quick-link" data-route="admin"><i class="fa-solid fa-file-lines"></i> التدوينات</a>
+          <a class="quick-link" data-route="admin"><i class="fa-solid fa-chart-line"></i> الإحصائيات</a>
+        </div>
+      </aside>
+
+      <!-- Feed -->
+      <section class="feed">
+        <!-- Composer -->
+        <div class="card composer hidden" id="composer">
+          <div class="composer-head">
+            <span class="avatar avatar-lg" id="composerAvatar"></span>
+            <div class="composer-meta">
+              <strong id="composerName"></strong>
+              <span>ماذا يدور في ذهنك تقنياً؟</span>
+            </div>
+          </div>
+          <input type="text" id="postTitle" class="input title-input" placeholder="عنوان (اختياري)" maxlength="80" />
+          <textarea id="postContent" class="textarea" placeholder="اكتب تدوينتك التقنية هنا... (حتى 500 حرف)" maxlength="500" rows="4"></textarea>
+          <div class="composer-foot">
+            <div class="char-count"><span id="charCount">0</span>/500</div>
+            <div class="composer-actions">
+              <label class="chip-toggle"><input type="checkbox" id="postPin" /> <i class="fa-solid fa-thumbtack"></i> تثبيت</label>
+              <label class="chip-toggle"><input type="checkbox" id="postFeature" /> <i class="fa-solid fa-star"></i> مميزة</label>
+              <button class="btn btn-primary" id="publishBtn"><i class="fa-solid fa-paper-plane"></i> نشر</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-header">
+          <h2 id="feedTitle">آخر التدوينات</h2>
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="ابحث في التدوينات..." />
+          </div>
+        </div>
+
+        <div id="postsList" class="posts-list"></div>
+        <div id="emptyState" class="empty-state hidden">
+          <i class="fa-solid fa-feather-pointed"></i>
+          <h3>لا توجد تدوينات</h3>
+          <p>كن أول من يشارك فكرة تقنية!</p>
+        </div>
+        <div id="loadingState" class="loading-state hidden">
+          <div class="spinner"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Views (admin / profile / myPosts) -->
+  <section class="view hidden" id="adminView">
+    <div class="container">
+      <div class="view-header">
+        <h2><i class="fa-solid fa-shield-halved"></i> لوحة إدارة النظام</h2>
+        <p>صلاحيات المدير: إدارة المستخدمين، التدوينات، والإحصائيات.</p>
+      </div>
+      <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="stats">الإحصائيات</button>
+        <button class="tab-btn" data-tab="users">المستخدمون</button>
+        <button class="tab-btn" data-tab="posts">التدوينات</button>
+        <button class="tab-btn" data-tab="settings">الإعدادات</button>
+      </div>
+      <div id="adminContent" class="admin-content"></div>
+    </div>
+  </section>
+
+  <section class="view hidden" id="profileView">
+    <div class="container">
+      <div class="profile-card card" id="profileCard"></div>
+    </div>
+  </section>
+
+  <section class="view hidden" id="myPostsView">
+    <div class="container">
+      <div class="view-header">
+        <h2><i class="fa-solid fa-pen-nib"></i> تدويناتي</h2>
+      </div>
+      <div id="myPostsList" class="posts-list"></div>
+    </div>
+  </section>
+
+  <!-- Auth Modal -->
+  <div class="modal hidden" id="authModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-mode="login">تسجيل الدخول</button>
+        <button class="modal-tab" data-mode="register">إنشاء حساب</button>
+      </div>
+      <form id="authForm" class="auth-form">
+        <div class="field" id="usernameField">
+          <label>اسم المستخدم</label>
+          <div class="input-wrap"><i class="fa-solid fa-user"></i><input type="text" id="authUsername" placeholder="username" /></div>
+        </div>
+        <div class="field" id="emailField" style="display:none">
+          <label>البريد الإلكتروني</label>
+          <div class="input-wrap"><i class="fa-solid fa-envelope"></i><input type="email" id="authEmail" placeholder="you@example.com" /></div>
+        </div>
+        <div class="field">
+          <label>كلمة المرور</label>
+          <div class="input-wrap"><i class="fa-solid fa-lock"></i><input type="password" id="authPassword" placeholder="••••••••" /></div>
+        </div>
+        <div class="field" id="confirmField" style="display:none">
+          <label>تأكيد كلمة المرور</label>
+          <div class="input-wrap"><i class="fa-solid fa-lock"></i><input type="password" id="authConfirm" placeholder="••••••••" /></div>
+        </div>
+        <div class="auth-error hidden" id="authError"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="authSubmit">دخول</button>
+        <p class="auth-hint" id="authHint">Demo: admin / admin123</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal hidden" id="editModal">
+    <div class="modal-backdrop" id="editBackdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" id="editClose"><i class="fa-solid fa-xmark"></i></button>
+      <h3>تعديل التدوينة</h3>
+      <input type="text" id="editTitle" class="input" placeholder="العنوان" maxlength="80" />
+      <textarea id="editContent" class="textarea" maxlength="500" rows="5"></textarea>
+      <div class="composer-foot">
+        <label class="chip-toggle"><input type="checkbox" id="editPin" /> <i class="fa-solid fa-thumbtack"></i> مثبتة</label>
+        <label class="chip-toggle"><input type="checkbox" id="editFeature" /> <i class="fa-solid fa-star"></i> مميزة</label>
+        <button class="btn btn-primary" id="saveEditBtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 تغريدات تقنية — منصة عربية للتدوين التقني. بياناتك محفوظة محلياً في متصفحك.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
